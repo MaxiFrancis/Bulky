@@ -25,9 +25,9 @@ namespace BulkyWeb.Controllers
         [HttpPost]
         public IActionResult Create(Category obj)
         {   
-            if (obj.Name == obj.DisplayOrder.ToString()) {
-                ModelState.AddModelError("name", "The dysplay order cannot match the name!");
-            }
+            //if (obj.Name == obj.DisplayOrder.ToString()) {
+            //    ModelState.AddModelError("name", "The dysplay order cannot match the name!");
+            //}
             if (ModelState.IsValid)
             {
                 _db.Categories.Add(obj);
