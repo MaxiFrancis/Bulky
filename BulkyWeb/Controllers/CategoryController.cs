@@ -65,7 +65,7 @@ namespace BulkyWeb.Controllers
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            return View();
 
         }
     }
