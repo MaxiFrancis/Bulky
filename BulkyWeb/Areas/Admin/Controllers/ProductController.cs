@@ -21,7 +21,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
             return View(objProduct);
         }
 
-        public IActionResult Create()
+        public IActionResult Upsert(int? id)
         {
             ProductVM productVM = new()
             {
@@ -32,11 +32,21 @@ namespace BulkyWeb.Areas.Admin.Controllers
                 }),
                 Product = new Product()
             };
-            return View();
+            if(id == null || id == 0)
+            {
+                //create
+                return View(productVM);
+            }
+            else
+            {
+                //update
+                productVM.Product = _unitOfWork.Product.Get(u=>u.Id==id);
+                return View(productVM);
+            }
         }
 
         [HttpPost]
-        public IActionResult Create(ProductVM productVM)
+        public IActionResult Upsert(ProductVM productVM, IFormFile? file)
         {
             if (ModelState.IsValid)
             {
@@ -56,37 +66,6 @@ namespace BulkyWeb.Areas.Admin.Controllers
             }
         }
 
-
-        public IActionResult Edit(int? id)
-        {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-            Product ProductFromDb = _unitOfWork.Product.Get(u => u.Id == id);
-            //Product ProductFromDb1 = _db.Categories.FirstOrDefault(u=>u.Id==id);
-            //Product ProductFromDb2 = _db.Categories.Where(u=>u.Id==id).FirstOrDefault();
-            if (ProductFromDb == null)
-            {
-                return NotFound();
-            }
-            return View(ProductFromDb);
-        }
-
-        [HttpPost]
-        public IActionResult Edit(Product obj)
-        {
-
-            if (ModelState.IsValid)
-            {
-                _unitOfWork.Product.Add(obj);
-                _unitOfWork.Save();
-                TempData["success"] = "Product edited successfully";
-                return RedirectToAction("Index");
-            }
-            return View();
-
-        }
 
         public IActionResult Delete(int? id)
         {
