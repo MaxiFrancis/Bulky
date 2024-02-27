@@ -72,22 +72,23 @@ namespace BulkyWeb.Areas.Admin.Controllers
                         file.CopyTo(fileStream);
                     }
 
-                    productVM.Product.ImageUrl = @"\images\product" + fileName;
+                    productVM.Product.ImageUrl = @"\images\product\" + fileName;
                 }
 
                 if (productVM.Product.Id == 0) 
                 { 
                     _unitOfWork.Product.Add(productVM.Product);
+                    _unitOfWork.Save();
+                    TempData["success"] = "Product created successfully";
+                    return RedirectToAction("Index");
                 }
                 else 
                 {
                     _unitOfWork.Product.Update(productVM.Product);
+                    _unitOfWork.Save();
+                    TempData["success"] = "Product updated successfully";
+                    return RedirectToAction("Index");
                 }
-
-                
-                _unitOfWork.Save();
-                TempData["success"] = "Product created successfully";
-                return RedirectToAction("Index");
             }
             else
             {
