@@ -28,7 +28,7 @@
 
                         <div class="col-12 col-md-6 pb-4">
                             <span class="badge">
-                                @(Model.Product.CategoryId.ToString() == null ? "Uncategoryzed" : Model.Product.Category)
+                                @(Model.Product.CategoryId.ToString() == null ? "Uncategoryzed" : @Model.Product.Category.Name)
                             </span>
                         </div>
                         <div class="row ps-2">
