@@ -27,7 +27,7 @@ namespace BulkyWeb.Areas.Customer.Controllers
 
         public IActionResult Details(int productId)
         {
-            ShoppingCart cart = new()
+            ShoppingCartVM cart = new()
             {
                 Product = _unitOfWork.Product.Get(u => u.Id == productId, includeProperties: "Category"),
                 Count = 1,
@@ -38,13 +38,13 @@ namespace BulkyWeb.Areas.Customer.Controllers
 
         [HttpPost]
         [Authorize]
-        public IActionResult Details(ShoppingCart shoppingCart)
+        public IActionResult Details(ShoppingCartVM shoppingCart)
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
             shoppingCart.ApplicationUserId = userId;
 
-            ShoppingCart cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.ApplicationUserId == userId && u.ProductId == shoppingCart.ProductId);
+            ShoppingCartVM cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.ApplicationUserId == userId && u.ProductId == shoppingCart.ProductId);
 
             if(cartFromDb == null)
             {

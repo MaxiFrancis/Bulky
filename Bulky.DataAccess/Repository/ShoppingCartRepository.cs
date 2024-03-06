@@ -11,14 +11,14 @@ using System.Threading.Tasks;
 
 namespace Bulky.DataAccess.Repository
 {
-    public class ShoppingCartRepository : Repository<ShoppingCart>, IShoppingCartRepository
+    public class ShoppingCartRepository : Repository<ShoppingCartVM>, IShoppingCartRepository
     {
         private ApplicationDbContext _db;
         public ShoppingCartRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
         }
-        public void Update(ShoppingCart obj)
+        public void Update(ShoppingCartVM obj)
         {
             _db.ShoppingCarts.Update(obj);
         }
