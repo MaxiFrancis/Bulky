@@ -49,11 +49,13 @@ namespace BulkyWeb.Areas.Customer.Controllers
             if(cartFromDb == null)
             {
                 cartFromDb.Count += shoppingCart.Count;
-                _unitOfWork.ShoppingCart.Update(shoppingCart);
-
+                _unitOfWork.ShoppingCart.Update(cartFromDb);
+            }
+            else
+            {
+                _unitOfWork.ShoppingCart.Add(shoppingCart);
             }
 
-            _unitOfWork.ShoppingCart.Add(shoppingCart);
             _unitOfWork.Save();
 
             return RedirectToAction(nameof(Index));
