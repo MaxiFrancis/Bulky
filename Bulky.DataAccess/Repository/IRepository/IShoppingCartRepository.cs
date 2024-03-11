@@ -1,4 +1,5 @@
 ﻿using Bulky.Models;
+using Bulky.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace Bulky.DataAccess.Repository.IRepository
 {
-    public interface IShoppingCartRepository : IRepository<ShoppingCartVM>
+    public interface IShoppingCartRepository : IRepository<ShoppingCart>
     {
-        void Update(ShoppingCartVM obj);
+        void Update(ShoppingCart obj);
     }
 }

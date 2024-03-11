@@ -1,6 +1,7 @@
 ﻿using Bulky.DataAcces.Data;
 using Bulky.DataAccess.Repository.IRepository;
 using Bulky.Models;
+using Bulky.Models.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,14 +12,14 @@ using System.Threading.Tasks;
 
 namespace Bulky.DataAccess.Repository
 {
-    public class ShoppingCartRepository : Repository<ShoppingCartVM>, IShoppingCartRepository
+    public class ShoppingCartRepository : Repository<ShoppingCart>, IShoppingCartRepository
     {
         private ApplicationDbContext _db;
         public ShoppingCartRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
         }
-        public void Update(ShoppingCartVM obj)
+        public void Update(ShoppingCart obj)
         {
             _db.ShoppingCarts.Update(obj);
         }
