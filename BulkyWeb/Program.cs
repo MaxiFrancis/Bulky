@@ -1,6 +1,7 @@
 using Bulky.DataAcces.Data;
 using Bulky.DataAccess.Repository;
 using Bulky.DataAccess.Repository.IRepository;
+using Bulky.Models;
 using Bulky.Utility;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -13,13 +14,12 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = $"/Identity/Account/Login";
     options.LogoutPath = $"/Identity/Account/Logout";
     options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
-
 });
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddRazorPages();
