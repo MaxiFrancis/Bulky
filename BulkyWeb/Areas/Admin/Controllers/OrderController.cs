@@ -119,12 +119,13 @@ namespace BulkyWeb.Areas.Admin.Controllers
             }
             _unitOfWork.Save();
             TempData["Success"] = "Order Cancelled Successfully.";
-            return RedirectToAction(nameof(Details), new { orderId = OrderVM.OrderHeader.Id });
+            return RedirectToAction(nameof(Details_PAY_NOW), new { orderId = OrderVM.OrderHeader.Id });
+            //return RedirectToAction(nameof(Details), new { orderId = OrderVM.OrderHeader.Id });
 
         }
 
         [HttpGet]
-        [ActionName("Details")]
+ //       [ActionName("Details")]
         [HttpPost]
         public IActionResult Details_PAY_NOW()
         {
