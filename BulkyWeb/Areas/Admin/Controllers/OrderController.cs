@@ -28,7 +28,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
                 OrderHeader = _unitOfWork.OrderHeader.Get(u => u.Id == orderId, includeProperties: "ApplicationUser"),
                 OrderDetail = _unitOfWork.OrderDetail.GetAll(u => u.OrderHeaderId == orderId, includeProperties: "Product")
             };
-            return View();
+            return View(orderVM);
         }
 
         #region API CALLS
