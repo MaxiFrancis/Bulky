@@ -125,7 +125,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
         }
 
         [HttpGet]
- //       [ActionName("Details")]
+        //       [ActionName("Details")]
         [HttpPost]
         public IActionResult Details_PAY_NOW()
         {
