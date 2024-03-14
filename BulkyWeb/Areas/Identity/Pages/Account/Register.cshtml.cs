@@ -186,7 +186,7 @@ namespace BulkyWeb.Areas.Identity.Pages.Account
                     }
                     else
                     {
-                        await _userManager.AddToRoleAsync(user, SD.Role_Admin);
+                        await _userManager.AddToRoleAsync(user, SD.Role_Customer);
                     }
 
                     //var userId = await _userManager.GetUserIdAsync(user);
