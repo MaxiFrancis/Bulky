@@ -175,10 +175,10 @@ namespace BulkyWeb.Areas.Identity.Pages.Account
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
-                    await _userManager.AddToRoleAsync(user, SD.Role_Customer);
+                    await _userManager.AddToRoleAsync(user, SD.Role_Admin);
                     result = await _userManager.AddLoginAsync(user, info);
-                    if (result.Succeeded)
-                    {
+                   // if (result.Succeeded)
+                    //{
                         _logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);
 
                         //var userId = await _userManager.GetUserIdAsync(user);
@@ -201,7 +201,7 @@ namespace BulkyWeb.Areas.Identity.Pages.Account
 
                         await _signInManager.SignInAsync(user, isPersistent: false, info.LoginProvider);
                         return LocalRedirect(returnUrl);
-                    }
+                    //}
                 }
                 foreach (var error in result.Errors)
                 {
