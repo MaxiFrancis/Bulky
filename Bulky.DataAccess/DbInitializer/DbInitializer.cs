@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bulky.DataAccess.DbInitializer
 {
-    public class DbInitializer
+    public class DbInitializer : IDbInitializer
     {
     }
 }
