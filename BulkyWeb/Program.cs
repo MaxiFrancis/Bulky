@@ -26,17 +26,17 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
 });
 
+builder.Services.AddAuthentication().AddFacebook(option =>
+{
+    option.AppId = "936374484536959";
+    option.AppSecret = "7391a28898f1b87f2aa5dbb9a10eaa76";
+});
+
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options => {
     options.IdleTimeout = TimeSpan.FromMinutes(100);
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
-});
-
-builder.Services.AddAuthentication().AddFacebook(option =>
-{
-    option.AppId = "936374484536959";
-    option.AppSecret = "7391a28898f1b87f2aa5dbb9a10eaa76";
 });
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
