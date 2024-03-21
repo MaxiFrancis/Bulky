@@ -123,7 +123,7 @@ namespace BulkyWeb.Areas.Customer.Controllers
 			{
                 // regular account
                 //strype logic
-                var domain = "http://localhost:5200/";
+                var domain = Request.Scheme + "://" + Request.Host.Value + "/";
                 var options = new SessionCreateOptions
                 {
                     SuccessUrl = domain + $"customer/cart/OrderConfirmation?id={ShoppingCartVM.OrderHeader.Id}",
