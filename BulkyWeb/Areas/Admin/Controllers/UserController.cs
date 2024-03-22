@@ -23,6 +23,11 @@ namespace BulkyWeb.Areas.Admin.Controllers
             return View();
         }
 
+        public IActionResult RoleManagemant(string userId)
+        {
+            return View();
+        }
+
         #region API CALLS
 
         [HttpGet]
@@ -44,7 +49,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
             return Json(new { data = objUserList });
         }
 
-        [HttpPut]
+        [HttpPost]
         public IActionResult LockUnlock([FromBody]string id)
         {
             var objFromDb = _db.ApplicationUsers.FirstOrDefault(u => u.Id == id);
@@ -53,7 +58,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
                 return Json(new { success = false, message = "Error while Locking/Unlocking" });
             }
 
-            if(objFromDb.LockoutEnd! == null && objFromDb.LockoutEnd > DateTime.Now)
+            if(objFromDb.LockoutEnd != null && objFromDb.LockoutEnd > DateTime.Now)
             {
                 //user currently locked and we need to unlock them
                 objFromDb.LockoutEnd = DateTime.Now;
@@ -63,7 +68,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
                 objFromDb.LockoutEnd = DateTime.Now.AddYears(10);
             }
             _db.SaveChanges();
-            return Json(new { success = true, message = "Delete Successfull" });
+            return Json(new { success = true, message = "Operation Successfull" });
         }
         #endregion
     }
