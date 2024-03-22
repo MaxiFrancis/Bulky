@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 namespace BulkyWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = SD.Role_Admin)]
+    //[Authorize(Roles = SD.Role_Admin)]
     public class UserController : Controller
     {
         private readonly ApplicationDbContext _db;
@@ -29,6 +29,13 @@ namespace BulkyWeb.Areas.Admin.Controllers
         public IActionResult GetAll()
         {
             List<ApplicationUser> objUserList = _db.ApplicationUsers.Include(u=>u.Company).ToList();
+            foreach (var user in objUserList)
+            {
+                if(user.Company != null) 
+                {
+                    user.Company = new() { Name = ""};
+                }
+            }
             return Json(new { data = objUserList });
         }
 
