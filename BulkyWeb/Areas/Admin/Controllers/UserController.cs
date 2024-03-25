@@ -17,8 +17,8 @@ namespace BulkyWeb.Areas.Admin.Controllers
     public class UserController : Controller
     {
         private readonly ApplicationDbContext _db;
-        private readonly UserManager<IdentityUser> _userManager;
-        public UserController(ApplicationDbContext db, UserManager<IdentityUser> userManager)
+        private readonly UserManager<ApplicationUser> _userManager;
+        public UserController(ApplicationDbContext db, UserManager<ApplicationUser> userManager)
         {
             _db = db;
             _userManager = userManager;      
@@ -74,7 +74,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
                 _db.SaveChanges();
 
                 _userManager.RemoveFromRoleAsync(applicationUser, oldRole).GetAwaiter().GetResult();
-                _userManager.RemoveFromRoleAsync(applicationUser, roleManagemantVM.ApplicationUser.Role).GetAwaiter().GetResult();
+                _userManager.AddToRoleAsync(applicationUser, roleManagemantVM.ApplicationUser.Role).GetAwaiter().GetResult();
             }
 
             return View("Index");
