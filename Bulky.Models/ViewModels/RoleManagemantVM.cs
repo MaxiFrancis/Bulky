@@ -10,7 +10,7 @@ namespace Bulky.Models.ViewModels
     public class RoleManagemantVM
     {
         public ApplicationUser ApplicationUser { get; set; }
-        public IEnumerable<SelectListItem> RoleItem { get; set; }
+        public IEnumerable<SelectListItem> RoleList { get; set; }
         public IEnumerable<SelectListItem> CompanyList { get; set; }
     }
 }
