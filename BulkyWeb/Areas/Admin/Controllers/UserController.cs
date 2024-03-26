@@ -32,8 +32,6 @@ namespace BulkyWeb.Areas.Admin.Controllers
 
         public IActionResult RoleManagemant(string userId)
         {
-            var RoleID = _db.UserRoles.FirstOrDefault(u => u.UserId == userId).RoleId;
-
             RoleManagemantVM RoleVM = new RoleManagemantVM()
             {
                 ApplicationUser = _unitOfWork.ApplicationUser.Get(u => u.Id == userId, includeProperties: "Company"),

@@ -20,15 +20,15 @@
                 <div class="form-floating py-2 col-12">
                     <select asp-for="ApplicationUser.Role" asp-items="@Model.RoleList" class="form-select"></select>
                 </div>
-                @{
+@*                 @{
                     var companyVisible = "display:none;";
                 }
                 @if(Model.ApplicationUser.Role == SD.Role_Company)
                 {
                     companyVisible = "display:block;";
-                }
+                } *@
                 <div class="form-floating py-2 col-12">
-                    <select asp-for="ApplicationUser.CompanyId" style="@companyVisible" asp-items="@Model.CompanyList" class="form-select"></select>
+                    <select asp-for="ApplicationUser.CompanyId"  asp-items="@Model.CompanyList" class="form-select"></select>
                 </div>
                 <div class="row pt-2">
                     <div class="col-6 col-md-3">
