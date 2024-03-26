@@ -33,7 +33,6 @@ namespace Bulky.DataAccess.Repository
                 objFromDb.CategoryId = obj.CategoryId;
                 objFromDb.Author = obj.Author;
                 objFromDb.ProductImages = obj.ProductImages;
-
             }
         }
     }
