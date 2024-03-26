@@ -17,9 +17,9 @@ namespace BulkyWeb.Areas.Admin.Controllers
     public class UserController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly RoleManager<ApplicationUser> _roleManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IUnitOfWork _unitOfWork;
-        public UserController(UserManager<ApplicationUser> userManager, IUnitOfWork unitOfWork, RoleManager<ApplicationUser> roleManager)
+        public UserController(UserManager<ApplicationUser> userManager, IUnitOfWork unitOfWork, RoleManager<IdentityRole> roleManager)
         {
             _unitOfWork = unitOfWork;
             _userManager = userManager;
